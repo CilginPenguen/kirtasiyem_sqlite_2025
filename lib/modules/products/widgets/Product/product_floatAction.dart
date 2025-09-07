@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:get/get.dart';
+import 'package:kirtasiyem_sqlite/modules/products/product_controller.dart';
+import 'package:kirtasiyem_sqlite/modules/products/widgets/Product/barcode_scanner.dart';
+import 'package:kirtasiyem_sqlite/modules/products/widgets/Product/mevcut_sayfa.dart';
+
+class ProductFloatingAction extends GetView<ProductController> {
+  const ProductFloatingAction({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: MevcutSayfa(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
+      floatingActionButton: Obx(
+        () => SpeedDial(
+          visible: !controller.isSearching.value,
+          animatedIcon: AnimatedIcons.menu_close,
+          backgroundColor: Colors.blueGrey.withAlpha(123),
+          direction: SpeedDialDirection.down,
+          children: [
+            SpeedDialChild(
+              child: Icon(Icons.inventory_2_outlined),
+              label: 'Ürünler',
+              onTap: () => controller.aktifSayfa.value = 1,
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.add_box),
+              label: "Ürün Ekle",
+              onTap: () => controller.aktifSayfa.value = 2,
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.camera_enhance),
+              label: 'Barkod İle Ara',
+              onTap: () => Get.to(() => const BarcodeScanner(mod: 1)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
