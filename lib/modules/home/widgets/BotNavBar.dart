@@ -44,7 +44,7 @@ class BotNavBar extends GetView<HomeController> {
             },
             child: Icon(
               icons[index],
-              color: isActive ? Colors.white : Colors.grey.withAlpha(500),
+              color: isActive ? Colors.white : Colors.black,
             ),
           );
         },

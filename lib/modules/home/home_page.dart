@@ -12,11 +12,14 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() => controller.buildPage(controller.currentIndex.value)),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed(AppRoutes.basket),
-        backgroundColor: AppColors.darkHotPink,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.shopping_cart, size: 32, color: Colors.white),
+      floatingActionButton: Visibility(
+        visible: MediaQuery.of(context).viewInsets.bottom == 0,
+        child: FloatingActionButton(
+          onPressed: () => Get.toNamed(AppRoutes.basket),
+          backgroundColor: AppColors.darkHotPink,
+          shape: const CircleBorder(),
+          child: const Icon(Icons.shopping_cart, size: 32, color: Colors.white),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BotNavBar(),

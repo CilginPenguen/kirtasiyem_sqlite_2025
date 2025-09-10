@@ -30,7 +30,7 @@ class ProductCategory extends GetView<ProductController> {
                   prefixIcon: Icon(Icons.category_outlined),
                 ),
                 hint: const Text("Kategori seç"),
-                value: items.contains(controller.kategori.value)
+                initialValue: items.contains(controller.kategori.value)
                     ? controller.kategori.value
                     : null,
                 items: items
@@ -54,6 +54,7 @@ class ProductCategory extends GetView<ProductController> {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.category_outlined),
                 ),
+                maxLength: 15,
                 onChanged: (value) {
                   controller.kategori.value = value;
                 },

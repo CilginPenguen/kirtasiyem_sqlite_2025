@@ -19,7 +19,8 @@ class ProductBrand extends GetView<ProductController> {
                       prefixIcon: Icon(Icons.abc_outlined),
                     ),
                     hint: Text("Marka seç"),
-                    value: controller.markalar.contains(controller.marka.value)
+                    initialValue:
+                        controller.markalar.contains(controller.marka.value)
                         ? controller.marka.value
                         : null,
                     items: controller.markalar
@@ -42,6 +43,7 @@ class ProductBrand extends GetView<ProductController> {
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.abc_outlined),
                     ),
+                    maxLength: 20,
                     onChanged: (value) {
                       controller.marka.value = value;
                     },

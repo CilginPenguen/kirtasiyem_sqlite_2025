@@ -15,6 +15,7 @@ class ProductPrice extends GetView<ProductController> {
         border: OutlineInputBorder(),
         prefixIcon: Icon(Icons.money_outlined),
       ),
+      maxLength: 8,
       inputFormatters: [DecimalTextInputFormatter(decimalRange: 2)],
       keyboardType: TextInputType.numberWithOptions(decimal: true),
       onChanged: (value) {

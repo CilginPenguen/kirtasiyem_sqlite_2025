@@ -31,13 +31,6 @@ class IndexMenu extends GetView<HomeController> {
               icon: const Icon(Icons.refresh),
               label: const Text("Ekran Koruyucu"),
             ),
-            ElevatedButton.icon(
-              onPressed: () {
-                controller.diyalogYolla();
-              },
-              icon: const Icon(Icons.bar_chart),
-              label: const Text("İstatistik"),
-            ),
           ],
         );
       case 1:
@@ -81,31 +74,6 @@ class IndexMenu extends GetView<HomeController> {
             ),
           ],
         );
-      case 2:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              "Geçmiş Seçenekleri",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 12),
-            ElevatedButton.icon(
-              onPressed: () {
-                Get.back();
-              },
-              icon: const Icon(Icons.filter_list),
-              label: const Text("Filtrele"),
-            ),
-            ElevatedButton.icon(
-              onPressed: () {
-                Get.back();
-              },
-              icon: const Icon(Icons.picture_as_pdf),
-              label: const Text("PDF Dışa Aktar"),
-            ),
-          ],
-        );
       case 3:
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -122,13 +90,6 @@ class IndexMenu extends GetView<HomeController> {
               },
               icon: const Icon(Icons.brightness_6),
               label: const Text("Tema Değiştir"),
-            ),
-            ElevatedButton.icon(
-              onPressed: () {
-                Get.back();
-              },
-              icon: const Icon(Icons.info),
-              label: const Text("Hakkında"),
             ),
           ],
         );

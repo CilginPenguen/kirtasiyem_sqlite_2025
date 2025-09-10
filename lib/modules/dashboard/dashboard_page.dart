@@ -5,8 +5,10 @@ import 'package:get/get.dart';
 import 'package:kirtasiyem_sqlite/modules/dashboard/dashboard_controller.dart';
 import 'package:kirtasiyem_sqlite/modules/dashboard/widgets/analog_saat.dart';
 import 'package:kirtasiyem_sqlite/modules/dashboard/widgets/daily_sales.dart';
+import 'package:kirtasiyem_sqlite/modules/dashboard/widgets/main_screen.dart';
 import 'package:kirtasiyem_sqlite/modules/dashboard/widgets/summary_card.dart';
 import 'package:kirtasiyem_sqlite/modules/history/history_controller.dart';
+import 'package:kirtasiyem_sqlite/services/clock_service.dart';
 import 'package:kirtasiyem_sqlite/themes/app_colors.dart';
 
 class DashboardPage extends GetView<DashboardController> {
@@ -15,6 +17,7 @@ class DashboardPage extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     final historyController = Get.find<HistoryController>();
+    final ClockService clockService = Get.find<ClockService>();
     return Scaffold(
       appBar: AppBar(
         title: Text("Ana Sayfa"),
@@ -29,8 +32,6 @@ class DashboardPage extends GetView<DashboardController> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               children: [
@@ -76,12 +77,19 @@ class DashboardPage extends GetView<DashboardController> {
                 bottom: MediaQuery.of(context).size.height * 0.01,
               ),
               child: Obx(
-                () => Visibility(
-                  visible: !controller.isExpanded.value,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [AnalogSaat()],
+                () => Center(
+                  child: IntrinsicWidth(
+                    child: clockService.clockMode ? AnalogSaat() : MainScreen(),
                   ),
+                ),
+              ),
+            ),
+            Obx(
+              () => Visibility(
+                visible: clockService.clockMode,
+                child: OutlinedButton(
+                  onPressed: () => clockService.toggleClock(),
+                  child: Text("Saati Kapat"),
                 ),
               ),
             ),

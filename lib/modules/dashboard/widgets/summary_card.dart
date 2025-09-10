@@ -37,7 +37,13 @@ class SummaryCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(icon, size: 18, color: Colors.white.withAlpha(230)),
+                Icon(
+                  icon,
+                  size: 18,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                ),
                 SizedBox(width: 4),
                 Text(
                   title,
@@ -51,7 +57,9 @@ class SummaryCard extends StatelessWidget {
             Text(
               amountFormat.format(amount),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: Colors.white,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),

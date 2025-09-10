@@ -17,8 +17,8 @@ class AnalogSaat extends GetView<DashboardController> {
         width: dimension * 0.7,
         height: dimension * 0.7,
         child: Theme.of(context).brightness == Brightness.dark
-            ? AnalogClock(hourNumbers: controller.sayiTipi)
-            : AnalogClock.dark(hourNumbers: controller.sayiTipi),
+            ? AnalogClock.dark(hourNumbers: controller.sayiTipi)
+            : AnalogClock(hourNumbers: controller.sayiTipi),
       ),
     );
   }

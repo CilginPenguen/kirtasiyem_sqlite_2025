@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class StorageKeys {
   static const String themeMode = 'theme_mode';
+  static const String clockCheck = "clock";
 }
 
 class StorageService extends GetxController {

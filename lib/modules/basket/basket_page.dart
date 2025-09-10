@@ -76,31 +76,30 @@ class BasketPage extends GetView<BasketController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                sepet.urun_description,
+                                sepet.category,
                                 style: const TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Fiyat : $urunToplamFiyat ₺",
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Birim Fiyatı: ${sepet.urun_fiyat} ₺',
-                                    style: const TextStyle(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+                              Text("Marka: ${sepet.marka}"),
+                              const SizedBox(height: 2),
+                              Text("Açıklama: ${sepet.urun_description}"),
+                              const SizedBox(height: 8),
+                              Text(
+                                "Fiyat : $urunToplamFiyat ₺",
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'Birim Fiyatı: ${sepet.urun_fiyat} ₺',
+                                style: const TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ],
                           ),

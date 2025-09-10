@@ -15,6 +15,7 @@ class ProductBarcode extends GetView<ProductController> {
         prefixIcon: Icon(Icons.inventory_2_sharp),
       ),
       keyboardType: TextInputType.number,
+      maxLength: 15,
       onChanged: (value) {
         final parsed = int.tryParse(value);
         if (parsed != null && parsed > 0) {

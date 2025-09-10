@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kirtasiyem_sqlite/modules/products/product_controller.dart';
+import 'package:kirtasiyem_sqlite/modules/products/widgets/Product/product_actions.dart';
 import 'product_card.dart';
 
 class ProductByCategoryPage extends GetView<ProductController> {
@@ -12,7 +13,7 @@ class ProductByCategoryPage extends GetView<ProductController> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Ürünler")),
+      appBar: AppBar(title: const Text("Ürünler"), actions: [ProductActions()]),
       body: Obx(() {
         final groupedData = controller.groupedProductsByCategory;
         if (groupedData.isEmpty) {
@@ -60,81 +61,94 @@ class ProductByCategoryPage extends GetView<ProductController> {
               return Card(
                 margin: const EdgeInsets.all(8),
                 child: ExpansionTile(
-                  title: Row(
+                  title: Column(
                     children: [
-                      Expanded(
-                        child: Text(
-                          category,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                      Column(
+                      Row(
                         children: [
-                          DropdownButton2<String>(
-                            isExpanded: true,
-                            value: safeSelectedDesc,
-                            items: descriptionOptions
-                                .map(
-                                  (d) => DropdownMenuItem(
-                                    value: d,
-                                    child: Text(
-                                      d,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                )
-                                .toList(),
-                            onChanged: (value) {
-                              if (value == null) return;
-                              controller.selectedDescription[category] = value;
-                            },
-                            buttonStyleData: ButtonStyleData(
-                              width: screenWidth * 0.15,
-                            ),
-                            dropdownStyleData: DropdownStyleData(
-                              width: screenWidth * 0.5,
+                          Expanded(
+                            child: Text(
+                              category,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
-                          const Text(
-                            "Açıklama Filtresi",
-                            style: TextStyle(fontSize: 8),
+                          Column(children: [
+                              
+                            ],
                           ),
                         ],
                       ),
-                      const SizedBox(width: 8),
-                      Column(
+                      Row(
                         children: [
-                          DropdownButton2<String>(
-                            isExpanded: true,
-                            value: safeSelectedBrand,
-                            items: brandOptions
-                                .map(
-                                  (b) => DropdownMenuItem(
-                                    value: b,
-                                    child: Text(
-                                      b,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                )
-                                .toList(),
-                            onChanged: (value) {
-                              if (value == null) return;
-                              controller.selectedBrand[category] = value;
-                            },
-                            buttonStyleData: ButtonStyleData(
-                              width: screenWidth * 0.15,
-                            ),
-                            dropdownStyleData: DropdownStyleData(
-                              width: screenWidth * 0.5,
-                            ),
+                          Column(
+                            children: [
+                              DropdownButton2<String>(
+                                isExpanded: true,
+                                value: safeSelectedBrand,
+                                items: brandOptions
+                                    .map(
+                                      (b) => DropdownMenuItem(
+                                        value: b,
+                                        child: Text(
+                                          b,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                                onChanged: (value) {
+                                  if (value == null) return;
+                                  controller.selectedBrand[category] = value;
+                                },
+                                buttonStyleData: ButtonStyleData(
+                                  width: screenWidth * 0.3,
+                                ),
+                                dropdownStyleData: DropdownStyleData(
+                                  width: screenWidth * 0.5,
+                                ),
+                              ),
+                              const Text(
+                                "Marka Filtresi",
+                                style: TextStyle(fontSize: 8),
+                              ),
+                            ],
                           ),
-                          const Text(
-                            "Marka Filtresi",
-                            style: TextStyle(fontSize: 8),
+                          SizedBox(width: screenWidth * 0.02),
+                          Column(
+                            children: [
+                              DropdownButton2<String>(
+                                isExpanded: true,
+                                value: safeSelectedDesc,
+                                items: descriptionOptions
+                                    .map(
+                                      (d) => DropdownMenuItem(
+                                        value: d,
+                                        child: Text(
+                                          d,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                                onChanged: (value) {
+                                  if (value == null) return;
+                                  controller.selectedDescription[category] =
+                                      value;
+                                },
+                                buttonStyleData: ButtonStyleData(
+                                  width: screenWidth * 0.3,
+                                ),
+                                dropdownStyleData: DropdownStyleData(
+                                  width: screenWidth * 0.5,
+                                ),
+                              ),
+                              const Text(
+                                "Açıklama Filtresi",
+                                style: TextStyle(fontSize: 8),
+                              ),
+                            ],
                           ),
                         ],
                       ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:kirtasiyem_sqlite/core/base_controller.dart';
 import 'package:kirtasiyem_sqlite/db/db_erisim.dart';
 import 'package:kirtasiyem_sqlite/models/urunler_liste.dart';
@@ -37,38 +36,6 @@ class ProductController extends BaseController {
   final formKey = GlobalKey<FormState>();
   var isSearching = false.obs;
   final urunGuncelleme = false.obs;
-  final ImagePicker _picker = ImagePicker();
-
-  /// Galeriden barkod okutma
-  Future<String?> scanFromGallery() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      final barcode = "1";
-      return "1";
-    }
-    return null;
-  }
-
-  /// mod'a göre galeriden barkod işle
-  Future<void> handleGalleryScan(int mod) async {
-    final result = await scanFromGallery();
-    if (result != null) {
-      switch (mod) {
-        case 1:
-          barkodUrunArama(result);
-          break;
-        case 2:
-          setBarkod(result);
-          Get.back();
-          break;
-        case 3:
-          // Sepete ekleme mantığını buraya ekleyebilirsin
-          break;
-      }
-    } else {
-      showErrorSnackbar(message: "Galeriden barkod okunamadı!");
-    }
-  }
 
   Future<void> urunDuzenleDiyalog(Urunler uruns) async {
     urunBarkod.value = uruns.urun_barkod;
@@ -89,28 +56,30 @@ class ProductController extends BaseController {
     urunGuncelleme.value = true;
 
     await diyalog(
-      Padding(
-        padding: const EdgeInsets.all(16),
-        child: Form(
-          key: formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const ProductBarcode(),
-              const SizedBox(height: 10),
-              ProductBrand(),
-              const SizedBox(height: 10),
-              ProductCategory(),
-              const SizedBox(height: 10),
-              const ProductDescription(),
-              const SizedBox(height: 10),
-              const ProductCount(),
-              const SizedBox(height: 10),
-              const ProductPrice(),
-              const SizedBox(height: 10),
-              const SizedBox(height: 20),
-              SaveButton(urunId: uruns.urun_id!),
-            ],
+      SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const ProductBarcode(),
+                const SizedBox(height: 10),
+                ProductBrand(),
+                const SizedBox(height: 10),
+                ProductCategory(),
+                const SizedBox(height: 10),
+                const ProductDescription(),
+                const SizedBox(height: 10),
+                const ProductCount(),
+                const SizedBox(height: 10),
+                const ProductPrice(),
+                const SizedBox(height: 10),
+                const SizedBox(height: 20),
+                SaveButton(urunId: uruns.urun_id!),
+              ],
+            ),
           ),
         ),
       ),

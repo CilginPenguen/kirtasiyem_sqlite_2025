@@ -117,21 +117,6 @@ class BarcodeScanner extends GetView<ProductController> {
             ),
           ),
 
-          /// Galeriden barkod okuma butonu
-          Positioned(
-            top: 40,
-            right: 124,
-            child: CircleAvatar(
-              backgroundColor: Colors.black54,
-              child: IconButton(
-                icon: const Icon(Icons.photo_library, color: Colors.white),
-                onPressed: () async {
-                  await controller.handleGalleryScan(mod);
-                },
-              ),
-            ),
-          ),
-
           /// Sürekli tarama alt liste
           if (mod == 3)
             Align(
